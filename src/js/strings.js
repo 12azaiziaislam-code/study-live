@@ -250,7 +250,7 @@
       'th.confirmDel': 'حذف الأستاذ «{name}»؟',
       'th.confirmDelHint': 'ستُحذف صورته وتقييماته نهائيًا.',
       'th.empty': 'لا أساتذة بعد',
-      'th.emptyHint': 'أضف أساتذة موادك ثم قيّمهم ليراها الجميع.',
+      'th.emptyHint': 'أضف أساتذة موادك وسجل ملاحظاتك وتقييماتك الدراسية.',
       'th.todayRate': 'قيّم الآن',
 
       'ct.title': 'جهات الاتصال',
@@ -743,7 +743,7 @@
       'th.confirmDel': 'Удалить преподавателя «{name}»?',
       'th.confirmDelHint': 'Фото и оценки будут удалены навсегда.',
       'th.empty': 'Преподавателей пока нет',
-      'th.emptyHint': 'Добавьте преподавателей и оцените их.',
+      'th.emptyHint': 'Добавьте преподавателей и ведите личные заметки и оценки.',
       'th.todayRate': 'Оценить сейчас',
 
       'ct.title': 'Контакты',
@@ -1233,7 +1233,7 @@
       'th.confirmDel': 'Delete teacher “{name}”?',
       'th.confirmDelHint': 'Their photo and reviews will be deleted forever.',
       'th.empty': 'No teachers yet',
-      'th.emptyHint': 'Add your teachers, then rate them for everyone to see.',
+      'th.emptyHint': 'Add your course professors and track your personal notes and ratings.',
       'th.todayRate': 'Rate now',
 
       'ct.title': 'Contacts',

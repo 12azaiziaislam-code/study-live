@@ -54,9 +54,13 @@
 
   function avatarHTML(photo, name) {
     if (!photo) {
+      var init = initial(name);
+      if (init === '?') {
+        return '<span class="contact-avatar contact-avatar-empty">' + SL.ui.icon('profile', 22) + '</span>';
+      }
       return (
         '<span class="contact-avatar" style="background:' + avatarColor(name) + '">' +
-        u.esc(initial(name)) + '</span>'
+        u.esc(init) + '</span>'
       );
     }
     if (isDataUrl(photo)) {
@@ -328,16 +332,24 @@ function confirmDelete(c) {
     var listHtml = !all.length
       ? '<div class="empty">' + SL.ui.icon('users', 40) +
         '<div class="e-title">' + u.esc(t('ct.empty')) + '</div>' +
-        '<div class="e-hint">' + u.esc(t('ct.emptyHint')) + '</div></div>'
+        '<div class="e-hint">' + u.esc(t('ct.emptyHint')) + '</div>' +
+        '<button type="button" class="btn btn-primary" data-act="add-empty">' +
+        SL.ui.icon('plus', 16) + '<span>' + u.esc(t('ct.add')) + '</span></button>' +
+        '</div>'
       : !visible.length
         ? '<div class="empty">' + SL.ui.icon('search', 40) +
           '<div class="e-title">' + u.esc(t('ct.noResults')) + '</div></div>'
         : '<div class="contacts-grid">' + visible.map(cardHTML).join('') + '</div>';
 
     rootEl.innerHTML =
-      '<header class="page-head">' +
-      '<h1><div class="icon-wrap">' + SL.ui.icon('users', 24) + '</div><span>' +
-      u.esc(t('nav.contacts')) + '</span></h1></header>' +
+      '<div class="page-head-row">' +
+      '<div>' +
+      '<h1 class="page-title">' + u.esc(t('nav.contacts')) + '</h1>' +
+      '<p class="day-greeting">' + SL.ui.icon('users', 14) + '<span>' + u.esc(t('ct.count', { n: visible.length, total: all.length })) + '</span></p>' +
+      '</div>' +
+      '<button type="button" class="btn btn-primary only-desktop" data-act="add-head">' +
+      SL.ui.icon('plus', 16) + '<span>' + u.esc(t('ct.add')) + '</span></button>' +
+      '</div>' +
       '<div class="page-content">' +
       '<div class="contacts-toolbar">' +
       '<div class="contacts-search">' + SL.ui.icon('search', 18) +
@@ -349,6 +361,20 @@ function confirmDelete(c) {
       count +
       listHtml +
       '</div>';
+
+    var addHead = rootEl.querySelector('[data-act="add-head"]');
+    if (addHead) {
+      addHead.addEventListener('click', function () {
+        openContactForm(null);
+      });
+    }
+
+    var addEmpty = rootEl.querySelector('[data-act="add-empty"]');
+    if (addEmpty) {
+      addEmpty.addEventListener('click', function () {
+        openContactForm(null);
+      });
+    }
 
     SL.ui.hydrateImages(rootEl);
 

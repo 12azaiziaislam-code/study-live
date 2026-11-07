@@ -1078,9 +1078,9 @@
 }
 
 .id-pill.id-pill-spec {
-  background: color-mix(in srgb, var(--hl) 18%, var(--surface));
+  background: var(--surface-2);
   color: var(--ink);
-  border-color: color-mix(in srgb, var(--hl) 40%, transparent);
+  border-color: var(--border);
 }
 
 .id-pill.id-pill-group {
@@ -2473,38 +2473,6 @@
   }
 }
 
-/* page header for places (override inline style) */
-.page-head h1 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 22px;
-}
-
-.page-head .icon-wrap {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: var(--gradient-accent-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-}
-
-/* Motivational message in stats */
-.motiv-message {
-  text-align: center;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--ink-muted);
-  padding: 8px 14px;
-  margin-top: 10px;
-  border-radius: var(--radius-s);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-}
-
 .pin-boxes {
   display: flex;
   justify-content: center;
@@ -2640,26 +2608,24 @@
 }
 
 .place-form .swatch {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: var(--sw, #33589e);
-  border: 2px solid transparent;
-  box-shadow:
-    inset 0 0 0 2px var(--surface, #fff),
-    0 2px 6px rgba(0, 0, 0, 0.28);
+  border: none;
+  box-shadow: 0 0 0 1px var(--border);
   cursor: pointer;
   padding: 0;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .place-form .swatch:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 .place-form .swatch.selected {
-  border-color: var(--accent);
-  transform: scale(1.1);
+  transform: scale(1.15);
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
 }
 
 .place-form .swatch-custom {
@@ -3056,6 +3022,21 @@ a.place-poi-row:hover {
   overflow: hidden;
 }
 
+.av-initial.av-empty {
+  background: var(--surface-2) !important;
+  border: 1.5px dashed var(--border-strong) !important;
+  color: var(--ink-muted) !important;
+}
+
+.contact-avatar-empty {
+  background: var(--surface-2) !important;
+  border: 1.5px dashed var(--border-strong) !important;
+  color: var(--ink-muted) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .tf-photo-btns {
   display: flex;
   flex-direction: column;
@@ -3367,6 +3348,21 @@ img.contact-avatar {
   color: #fff;
   object-fit: cover;
   overflow: hidden;
+}
+
+.av-initial.av-empty {
+  background: var(--surface-2) !important;
+  border: 1.5px dashed var(--border-strong) !important;
+  color: var(--ink-muted) !important;
+}
+
+.contact-avatar-empty {
+  background: var(--surface-2) !important;
+  border: 1.5px dashed var(--border-strong) !important;
+  color: var(--ink-muted) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cf-photo-btns {

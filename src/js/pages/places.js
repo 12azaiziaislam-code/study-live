@@ -1024,10 +1024,20 @@
 
     if (!places.length) {
       listEl.innerHTML = q
-        ? '<div class="empty-state"><p>' + u.esc(t('pl.noResults')) + '</p></div>'
-        : '<div class="empty-state stagger"><div class="icon-wrap">' +
-          SL.ui.icon('mapPin', 32) + '</div>' +
-          '<p>' + u.esc(t('pl.noPlaces')) + '</p></div>';
+        ? '<div class="empty"><div class="e-title">' + u.esc(t('pl.noResults')) + '</div></div>'
+        : '<div class="empty stagger">' +
+          SL.ui.icon('mapPin', 40) +
+          '<div class="e-title">' + u.esc(t('pl.noPlaces')) + '</div>' +
+          '<button type="button" class="btn btn-primary" data-act="add-empty">' +
+          SL.ui.icon('plus', 16) + '<span>' + u.esc(t('pl.add')) + '</span></button>' +
+          '</div>';
+
+      var addEmpty = listEl.querySelector('[data-act="add-empty"]');
+      if (addEmpty) {
+        addEmpty.addEventListener('click', function () {
+          openPlaceForm(null);
+        });
+      }
       return;
     }
 
@@ -1080,10 +1090,14 @@
       var all = SL.store.places();
 
       rootEl.innerHTML =
-        '<header class="page-head">' +
-        '<h1><div class="icon-wrap">' + SL.ui.icon('mapPin', 24) + '</div><span>' +
-        u.esc(t('nav.places')) + '</span></h1>' +
-        '</header>' +
+        '<div class="page-head-row">' +
+        '<div>' +
+        '<h1 class="page-title">' + u.esc(t('nav.places')) + '</h1>' +
+        '<p class="day-greeting">' + SL.ui.icon('mapPin', 14) + '<span>' + u.esc(t('pl.count', { n: all.length })) + '</span></p>' +
+        '</div>' +
+        '<button type="button" class="btn btn-primary only-desktop" data-act="add-head">' +
+        SL.ui.icon('plus', 16) + '<span>' + u.esc(t('pl.add')) + '</span></button>' +
+        '</div>' +
         '<div class="page-content">' +
         '<div class="places-map-card stagger">' +
         '<div id="places-map-embed" class="places-map"></div>' +
@@ -1106,6 +1120,13 @@
         '</div>';
 
       renderList(rootEl, all);
+
+      var addHead = rootEl.querySelector('[data-act="add-head"]');
+      if (addHead) {
+        addHead.addEventListener('click', function () {
+          openPlaceForm(null);
+        });
+      }
 
       var filterInput = rootEl.querySelector('#pl-filter');
       var clearBtn = rootEl.querySelector('#pl-filter-clear');

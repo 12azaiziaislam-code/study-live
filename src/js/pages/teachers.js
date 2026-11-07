@@ -39,9 +39,13 @@
 
   function photoHTML(photo, name) {
     if (!photo) {
+      var init = initial(name);
+      if (init === '?') {
+        return '<span class="av-initial av-empty">' + SL.ui.icon('profile', 26) + '</span>';
+      }
       return (
         '<span class="av-initial" style="background:' + avatarColor(name) + '">' +
-        u.esc(initial(name)) + '</span>'
+        u.esc(init) + '</span>'
       );
     }
     if (isDataUrl(photo)) {
@@ -372,18 +376,40 @@
         '<div class="empty">' +
         SL.ui.icon('graduation', 40) +
         '<div class="e-title">' + u.esc(t('th.empty')) + '</div>' +
-        '<div class="e-hint">' + u.esc(t('th.emptyHint')) + '</div></div>';
+        '<div class="e-hint">' + u.esc(t('th.emptyHint')) + '</div>' +
+        '<button type="button" class="btn btn-primary" data-act="add-empty">' +
+        SL.ui.icon('plus', 16) + '<span>' + u.esc(t('th.add')) + '</span></button>' +
+        '</div>';
     }
 
     rootEl.innerHTML =
-      '<header class="page-head">' +
-      '<h1><div class="icon-wrap">' + SL.ui.icon('graduation', 24) + '</div><span>' +
-      u.esc(t('nav.teachers')) + '</span></h1></header>' +
+      '<div class="page-head-row">' +
+      '<div>' +
+      '<h1 class="page-title">' + u.esc(t('nav.teachers')) + '</h1>' +
+      '<p class="day-greeting">' + SL.ui.icon('graduation', 14) + '<span>' + u.esc(t('th.count', { n: all.length }) || '') + '</span></p>' +
+      '</div>' +
+      '<button type="button" class="btn btn-primary only-desktop" data-act="add-head">' +
+      SL.ui.icon('plus', 16) + '<span>' + u.esc(t('th.add')) + '</span></button>' +
+      '</div>' +
       '<div class="page-content">' +
       emptyHtml +
       '<div class="teachers-grid">' +
       all.map(cardHTML).join('') +
       '</div></div>';
+
+    var addHead = rootEl.querySelector('[data-act="add-head"]');
+    if (addHead) {
+      addHead.addEventListener('click', function () {
+        openTeacherForm(null);
+      });
+    }
+
+    var addEmpty = rootEl.querySelector('[data-act="add-empty"]');
+    if (addEmpty) {
+      addEmpty.addEventListener('click', function () {
+        openTeacherForm(null);
+      });
+    }
 
     SL.ui.hydrateImages(rootEl);
 

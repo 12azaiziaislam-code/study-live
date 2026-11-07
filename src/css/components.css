@@ -389,7 +389,11 @@ input[type='date'] {
 }
 
 .sheet-head h2 {
-  font-size: 19px;
+  font-family: var(--font) !important;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
   margin-inline-end: auto;
 }
 
