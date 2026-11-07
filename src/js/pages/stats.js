@@ -196,10 +196,10 @@
       });
     }
 
-    if (agg.hardestSubject) {
+    if (agg.hardestSubject && agg.hardestSubject.val > 0) {
       tips.push({
         type: 'challenge',
-        icon: icon('trophy', 16),
+        icon: icon('bookmark', 16),
         text: t('sh.recChallenge', {
           subject: agg.hardestSubject.subject.name,
           val: agg.hardestSubject.val,
@@ -215,28 +215,12 @@
       });
     }
 
-    if (agg.streak === 0 && agg.notDone > 0) {
-      tips.push({
-        type: 'boost',
-        icon: icon('fire', 16),
-        text: t('sh.recStreak'),
-      });
-    }
-
-    if (agg.total > 0 && agg.notDone === 0) {
-      tips.push({
-        type: 'celebrate',
-        icon: icon('check', 16),
-        text: t('sh.recAllDone'),
-      });
-    }
-
     if (!tips.length) return '';
 
     return (
       '<div class="card card-pad stats-insight-card">' +
       '<div class="insight-head">' +
-      '<span class="insight-glow-icon">' + icon('lightbulb', 18) + '</span>' +
+      '<span class="insight-glow-icon">' + icon('tasks', 16) + '</span>' +
       '<h3 class="insight-title">' + u.esc(t('sh.smartInsights')) + '</h3>' +
       '</div>' +
       '<ul class="insight-list">' +
@@ -413,11 +397,15 @@
     var hasTasks = agg.total > 0;
 
     root2.innerHTML =
+      '<div class="page-head-row">' +
+      '<div>' +
       '<h1 class="page-title">' + u.esc(t('nav.stats')) + '</h1>' +
       (hasTasks
         ? '<p class="day-greeting"><span>' +
           u.esc(t('sh.summary', { done: agg.done, total: agg.total })) + '</span></p>'
         : '') +
+      '</div>' +
+      '</div>' +
       '<div data-host="body" class="stats-body-wrap"></div>';
 
     var body = root2.querySelector('[data-host="body"]');
@@ -446,15 +434,9 @@
       /* 2: AI Coach & Smart Insights */
       html += smartInsightsHTML(agg);
 
-      /* 3: Completion Rate Card with Motivator */
-      var pct = Math.round((agg.done / agg.total) * 100);
-      var motivKey = 'mo.statsLow';
-      if (pct >= 90) motivKey = 'mo.statsHigh';
-      else if (pct >= 50) motivKey = 'mo.statsMid';
-
+      /* 3: Completion Rate Card */
       html += '<h2 class="section-title">' + icon('check', 14) + u.esc(t('sh.ratio')) + '</h2>';
       html += '<div class="card card-pad">' + ratioHTML(agg.done, agg.notDone) +
-              '<div class="motiv-message">' + u.esc(t(motivKey)) + '</div>' +
               workloadHTML(agg.byDifficulty, agg.notDone) +
               '</div>';
 

@@ -87,6 +87,17 @@ p {
 
 /* Header styling */
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.desktop-nav {
+  display: none;
+}
+
 .header .brand {
   display: flex;
   align-items: center;
@@ -617,31 +628,67 @@ p {
     font-size: 15px;
   }
 
+  .header {
+    height: 60px;
+    padding-inline: 24px;
+    justify-content: space-between;
+  }
+
+  .header .brand {
+    margin-inline-end: 0;
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 5px;
+    border-radius: var(--radius-s);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+  }
+
+  .desktop-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-xs);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all var(--t-fast) ease;
+    white-space: nowrap;
+  }
+
+  .desktop-nav-link:hover {
+    color: var(--ink);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+  }
+
+  .desktop-nav-link.is-active {
+    color: var(--ink);
+    font-weight: 600;
+    background: var(--surface);
+    box-shadow: var(--shadow-1);
+    border: 1px solid var(--border);
+  }
+
+  .desktop-nav-link.is-active svg {
+    color: var(--accent);
+  }
+
   .main {
     padding-top: 28px;
-    padding-bottom: 120px;
+    padding-bottom: 48px;
+    max-width: 860px;
   }
 
   .bottom-nav {
-    inset-inline: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 22px;
-    width: auto;
-    min-width: 440px;
-    max-width: 520px;
-    height: 56px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-2);
-    background: var(--glass-bg-strong);
-  }
-
-  [dir='rtl'] .bottom-nav {
-    left: auto;
-    right: 50%;
-    transform: translateX(50%);
+    display: none !important;
   }
 
   .fab {

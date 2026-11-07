@@ -35,11 +35,14 @@
       '<span class="name">Study Live</span>' +
       '<span class="brand-tag" data-host="brandtag">' + (SL.i18n.lang === 'ar' ? 'منصة الطالب' : SL.i18n.lang === 'ru' ? 'Студент' : 'Student') + '</span>' +
       '</span></span>' +
+      '<nav class="desktop-nav" aria-label="Desktop Navigation" data-host="desktopnav"></nav>' +
+      '<div class="header-actions">' +
       '<button class="icon-btn pill-btn" data-act="lang" aria-haspopup="menu">' +
       SL.ui.icon('globe', 17) +
       '<span class="icon-label" data-host="langname"></span></button>' +
       '<button class="icon-btn pill-btn" data-act="theme" aria-label="' + SL.i18n.t('hdr.theme') + '" data-host="themebtn"></button>' +
-      '<div class="lang-menu" role="menu" data-host="langmenu"></div>';
+      '<div class="lang-menu" role="menu" data-host="langmenu"></div>' +
+      '</div>';
 
     var menu = header.querySelector('[data-host="langmenu"]');
     var themeBtn = header.querySelector('[data-host="themebtn"]');

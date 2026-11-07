@@ -68,6 +68,33 @@
         showHubMenu(secondaries);
       });
     }
+
+    // Desktop header navigation
+    var dNav = document.querySelector('[data-host="desktopnav"]');
+    if (dNav) {
+      var dPages = [
+        { id: 'overview', key: 'nav.home', icon: 'home' },
+        { id: 'tasks', key: 'nav.tasks', icon: 'tasks' },
+        { id: 'notes', key: 'nav.notes', icon: 'notes' },
+        { id: 'stats', key: 'nav.stats', icon: 'chart' },
+        { id: 'vault', key: 'v.title', icon: 'lock' },
+        { id: 'places', key: 'nav.places', icon: 'mapPin' },
+        { id: 'profile', key: 'nav.profile', icon: 'profile' }
+      ];
+      dNav.innerHTML = dPages.map(function(dp) {
+        var isCur = dp.id === currentId;
+        var label = SL.i18n.t(dp.key) || dp.id;
+        return '<button type="button" class="desktop-nav-link' + (isCur ? ' is-active' : '') + '" data-dpage="' + dp.id + '">' +
+               SL.ui.icon(dp.icon, 16) +
+               '<span>' + SL.utils.esc(label) + '</span>' +
+               '</button>';
+      }).join('');
+      dNav.querySelectorAll('[data-dpage]').forEach(function(b) {
+        b.addEventListener('click', function() {
+          go(b.getAttribute('data-dpage'));
+        });
+      });
+    }
   }
 
   function showHubMenu(secondaries) {
@@ -119,9 +146,9 @@
     var fab = document.querySelector('.fab');
     if (!fab) return;
     var def = page.getFab ? page.getFab() : null;
-    if (def) {
+    if (def && window.innerWidth < 768) {
       fab.hidden = false;
-      fab.style.display = 'flex'; // inline style wins over any CSS, even where [hidden] support is odd
+      fab.style.display = 'flex';
       fab.innerHTML = SL.ui.icon('plus', 24);
       fab.setAttribute('aria-label', SL.i18n.t(def.labelKey));
       fab.onclick = function () {
@@ -132,6 +159,18 @@
       fab.style.display = 'none';
       fab.onclick = null;
     }
+  }
+
+  // Keep fab synced with window width changes
+  if (typeof window !== 'undefined') {
+    window.addEventListener('resize', SL.utils.debounce(function () {
+      if (currentId) {
+        var curPage = registered.filter(function (p) {
+          return p.id === currentId;
+        })[0];
+        if (curPage) updateFab(curPage);
+      }
+    }, 150));
   }
 
   function go(id) {

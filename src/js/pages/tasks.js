@@ -446,11 +446,16 @@
     var parts = partition();
 
     root2.innerHTML =
+      '<div class="page-head-row">' +
+      '<div>' +
       '<h1 class="page-title">' + u.esc(t('t.title')) + '</h1>' +
       '<p class="day-greeting">' + icon('calendar', 15) + '<span>' + u.esc(u.fmtDateLong(u.todayStr(), SL.i18n.lang)) + '</span></p>' +
+      '</div>' +
+      '<button type="button" class="btn btn-primary only-desktop" data-act="add-task-head">' +
+      icon('plus', 16) + '<span>' + u.esc(t('ov.addTask') || t('a.add')) + '</span></button>' +
+      '</div>' +
 
       '<div class="card card-pad cal-card only-desktop">' +
-      '<span class="cal-tape" aria-hidden="true"></span>' +
       '<div class="cal-head">' +
       '<span class="cal-title">' + u.esc(u.monthTitle(view.year, view.month, SL.i18n.lang)) + '</span>' +
       '<button class="icon-btn" data-act="prev" aria-label="' + u.esc(t('cal.prev')) + '">' + icon('chevL', 18) + '</button>' +
@@ -539,6 +544,8 @@
             return;
           }
           SL.ui.openSubjectManager(cur.sem.id);
+        } else if (act === 'add-task-head') {
+          openForm(null, view.selected, root2);
         }
       });
     });

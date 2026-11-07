@@ -318,9 +318,10 @@
     ].filter(Boolean).join('');
 
     root2.innerHTML =
+      '<div class="page-head-row">' +
       '<h1 class="page-title">' + u.esc(t('p.title')) + '</h1>' +
+      '</div>' +
 
-      '<!-- Collegiate Student ID Card -->' +
       '<div class="profile-id-card" data-host="id-card">' +
       '<div class="id-card-top">' +
       '<span class="id-brand-badge">' + icon('logo', 13) + u.esc(t('p.idCardTitle')) + '</span>' +

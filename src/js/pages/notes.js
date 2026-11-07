@@ -28,7 +28,6 @@
     var s = n.subjectId ? SL.store.subjectById(n.subjectId) : null;
     var color = s ? s.color : 'var(--warn)';
     var shade = s ? ' shade-' + u.shadeIndex(n, all) : '';
-    var tilt = u.tiltFor(n.id);
     var thumbs = n.images
       .slice(0, 3)
       .map(function (entry) {
@@ -42,8 +41,7 @@
       .join('');
     var extra = n.images.length > 3 ? '<span class="more-img">+' + (n.images.length - 3) + '</span>' : '';
     return (
-      '<button type="button" class="sticky' + shade + (n.pinned ? ' pinned' : '') + '" data-id="' + n.id + '" style="--c:' + u.esc(color) +
-      ';--tilt:' + tilt + '">' +
+      '<button type="button" class="sticky' + shade + (n.pinned ? ' pinned' : '') + '" data-id="' + n.id + '" style="--c:' + u.esc(color) + '">' +
       '<span class="pin-flag" aria-hidden="true">' + SL.ui.icon('bookmark', 13) + '</span>' +
       (n.title ? '<div class="n-title">' + u.esc(n.title) + '</div>' : '') +
       (n.text ? '<div class="n-text">' + u.esc(n.text) + '</div>' : '') +

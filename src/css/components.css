@@ -137,21 +137,14 @@
 }
 
 .textarea {
-  min-height: 140px;
+  min-height: 120px;
   resize: vertical;
-  line-height: 30px; /* matches ruled lines background */
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 29px,
-    color-mix(in srgb, var(--border-strong) 55%, transparent) 29px,
-    color-mix(in srgb, var(--border-strong) 55%, transparent) 30px
-  );
-  background-attachment: local;
+  line-height: 1.5;
+  background-image: none;
 }
 
 .textarea.compact {
-  min-height: 96px;
+  min-height: 84px;
 }
 
 .input:focus,

@@ -95,18 +95,18 @@
 
   function renderSetup(root2) {
     root2.innerHTML =
-      '<h1 class="page-title">' + u.esc(t('v.title')) + '</h1>' +
+      '<div class="page-head-row"><h1 class="page-title">' + u.esc(t('v.title')) + '</h1></div>' +
       '<div class="card card-pad vault-hero">' +
-      icon('lock', 34) +
-      '<div class="e-title" style="margin-top:8px">' + u.esc(t('v.setupTitle')) + '</div>' +
-      '<p class="hint-line" style="margin-top:6px">' + u.esc(t('v.setupHint')) + '</p>' +
-      '<div class="field" style="margin-top:14px"><label>' + u.esc(t('v.pin')) + '</label><div data-host="pin1"></div></div>' +
+      '<div class="vault-hero-icon">' + icon('lock', 24) + '</div>' +
+      '<div class="e-title" style="margin-top:4px">' + u.esc(t('v.setupTitle')) + '</div>' +
+      '<p class="hint-line" style="margin-top:4px">' + u.esc(t('v.setupHint')) + '</p>' +
+      '<div class="field" style="margin-top:16px"><label>' + u.esc(t('v.pin')) + '</label><div data-host="pin1"></div></div>' +
       '<div class="field"><label>' + u.esc(t('v.pinConfirm')) + '</label><div data-host="pin2"></div></div>' +
       '<div class="field"><label for="vp-hint">' + u.esc(t('v.hint')) + '</label>' +
       '<input class="input" id="vp-hint" placeholder="' + u.esc(t('v.hintPh')) + '">' +
       '<span class="field-error" role="alert" data-host="err" hidden></span></div>' +
-      '<button class="btn btn-primary btn-block" data-act="create">' + icon('lock', 17) + u.esc(t('v.create')) + '</button>' +
-      '<p class="hint-line" style="margin-top:12px">' + icon('lock', 12) + ' ' + u.esc(t('v.security')) + '</p>' +
+      '<button class="btn btn-primary btn-block" data-act="create" style="margin-top:8px">' + icon('lock', 16) + u.esc(t('v.create')) + '</button>' +
+      '<p class="hint-line" style="margin-top:12px;font-size:12px">' + icon('lock', 12) + ' ' + u.esc(t('v.security')) + '</p>' +
       '</div>';
 
     var pin1 = pinBoxes(root2.querySelector('[data-host="pin1"]'));
@@ -139,7 +139,6 @@
         unlocked = true;
         render(root2, true);
         SL.router.updateFab(SL.pages.vault); // show the add FAB after unlocking
-        SL.ui.toast(t('toast.saved'));
       });
     });
   }
@@ -154,14 +153,14 @@
 
   function renderLocked(root2) {
     root2.innerHTML =
-      '<h1 class="page-title">' + u.esc(t('v.title')) + '</h1>' +
+      '<div class="page-head-row"><h1 class="page-title">' + u.esc(t('v.title')) + '</h1></div>' +
       '<div class="card card-pad vault-hero">' +
-      icon('lock', 34) +
-      '<div class="e-title" style="margin-top:8px">' + u.esc(t('v.unlockTitle')) + '</div>' +
-      '<p class="hint-line" style="margin-top:6px">' + u.esc(t('v.unlockSub')) + '</p>' +
-      '<div style="margin-top:14px" data-host="pin"></div>' +
+      '<div class="vault-hero-icon">' + icon('lock', 24) + '</div>' +
+      '<div class="e-title" style="margin-top:4px">' + u.esc(t('v.unlockTitle')) + '</div>' +
+      '<p class="hint-line" style="margin-top:4px">' + u.esc(t('v.unlockSub')) + '</p>' +
+      '<div style="margin-top:16px" data-host="pin"></div>' +
       '<span class="field-error" role="alert" data-host="err" hidden></span>' +
-      '<button class="btn btn-primary btn-block" data-act="unlock" style="margin-top:12px">' + icon('lock', 17) + u.esc(t('v.unlock')) + '</button>' +
+      '<button class="btn btn-primary btn-block" data-act="unlock" style="margin-top:16px">' + icon('lock', 16) + u.esc(t('v.unlock')) + '</button>' +
       '</div>';
 
     var pin = pinBoxes(root2.querySelector('[data-host="pin"]'));
@@ -255,9 +254,18 @@
     });
 
     root2.innerHTML =
+      '<div class="page-head-row">' +
+      '<div>' +
       '<h1 class="page-title">' + u.esc(t('v.title')) + '</h1>' +
-      '<div class="day-greeting">' + icon('lock', 14) + '<span>' + u.esc(t('v.security')) + '</span>' +
-      '<button class="mini-btn" data-act="lock" style="margin-inline-start:auto" aria-label="' + u.esc(t('v.lockBtn')) + '">' + icon('lock', 16) + '</button></div>' +
+      '<p class="day-greeting">' + icon('lock', 14) + '<span>' + u.esc(t('v.security')) + '</span></p>' +
+      '</div>' +
+      '<div class="page-head-actions">' +
+      '<button type="button" class="btn btn-ghost btn-sm" data-act="lock" title="' + u.esc(t('v.lockBtn')) + '">' +
+      icon('lock', 15) + '<span>' + u.esc(t('v.lockBtn')) + '</span></button>' +
+      '<button type="button" class="btn btn-primary only-desktop" data-act="add">' +
+      icon('plus', 16) + '<span>' + u.esc(t('v.add')) + '</span></button>' +
+      '</div>' +
+      '</div>' +
       '<div class="search-wrap vault-search">' + icon('search', 17) +
       '<input class="input" type="search" data-act="vq" placeholder="' + u.esc(t('v.searchPh')) + '" aria-label="' + u.esc(t('a.search')) + '"></div>' +
       '<div data-host="list" class="stagger"></div>';
