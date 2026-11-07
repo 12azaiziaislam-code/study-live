@@ -645,8 +645,7 @@ p {
   }
 
   .fab {
-    inset-inline-end: calc(50% - min(var(--content-w), 100vw) / 2 + 16px);
-    bottom: 92px;
+    display: none !important;
   }
 
   .stat-card:hover {

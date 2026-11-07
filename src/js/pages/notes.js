@@ -68,14 +68,16 @@
     var subjects = SL.store.currentSemesterSubjects();
 
     root2.innerHTML =
+      '<div class="page-head-row">' +
       '<h1 class="page-title">' + u.esc(t('n.title')) + '</h1>' +
+      '<button type="button" class="btn btn-primary only-desktop" data-act="new">' +
+      SL.ui.icon('plus', 16) + '<span>' + u.esc(t('n.new')) + '</span></button>' +
+      '</div>' +
       '<div class="notes-tools">' +
       '<div class="search-wrap">' + SL.ui.icon('search', 17) +
       '<input class="input" type="search" data-act="q" value="' + u.esc(filter.q) + '" ' +
       'placeholder="' + u.esc(t('n.searchPh')) + '" aria-label="' + u.esc(t('a.search')) + '"></div>' +
       '<div class="chips-row scroll" data-host="filters"></div>' +
-      '<button type="button" class="btn btn-primary notes-new-btn only-desktop" data-act="new">' +
-      SL.ui.icon('plus', 17) + u.esc(t('n.new')) + '</button>' +
       '</div>' +
       '<div data-host="grid" class="notes-grid"></div>';
 

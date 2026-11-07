@@ -165,9 +165,9 @@
       '</div>' +
       /* 2: Streak */
       '<div class="stats-kpi-card">' +
-      '<div class="kpi-top"><span class="kpi-label">' + u.esc(t('sh.streak')) + '</span><span class="kpi-icon-pill p-fire">🔥</span></div>' +
+      '<div class="kpi-top"><span class="kpi-label">' + u.esc(t('sh.streak')) + '</span><span class="kpi-icon-pill p-fire">' + icon('fire', 14) + '</span></div>' +
       '<div class="kpi-value kpi-streak">' + u.esc(streakVal) + '</div>' +
-      '<div class="kpi-sub">' + (agg.streak > 0 ? '⚡ ' + u.esc(t('sh.streak')) : '🎯 ' + u.esc(t('sh.streakZero'))) + '</div>' +
+      '<div class="kpi-sub">' + (agg.streak > 0 ? u.esc(t('sh.streak')) : u.esc(t('sh.streakZero'))) + '</div>' +
       '</div>' +
       /* 3: Active Workload */
       '<div class="stats-kpi-card">' +
@@ -323,7 +323,7 @@
 
   function sparkline(history) {
     var last = history.slice(-8);
-    if (!last.length) return '';
+    if (last.length < 2) return '';
     return (
       '<span class="spark" aria-hidden="true">' +
       last
@@ -373,7 +373,6 @@
           sparkline(r.history) +
           '<span class="standing-badge ' + valueTone(r.value) + ' num" style="border-color:' + standingColor(r.value) + '">' + r.value + '%</span>' +
           '<span class="trend-badge ' + r.tone + '">' + u.esc(t(r.trendKey)) + '</span>' +
-          '<span class="h-date">' + u.esc(t('sh.lastChanged', { date: u.fmtDateShort(r.lastDate, SL.i18n.lang) })) + '</span>' +
           '</div>'
         );
       })
