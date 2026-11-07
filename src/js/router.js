@@ -73,11 +73,11 @@
     var dNav = document.querySelector('[data-host="desktopnav"]');
     if (dNav) {
       var dPages = [
-        { id: 'overview', key: 'nav.home', icon: 'home' },
+        { id: 'overview', key: 'nav.overview', icon: 'home' },
         { id: 'tasks', key: 'nav.tasks', icon: 'tasks' },
         { id: 'notes', key: 'nav.notes', icon: 'notes' },
         { id: 'stats', key: 'nav.stats', icon: 'chart' },
-        { id: 'vault', key: 'v.title', icon: 'lock' },
+        { id: 'vault', key: 'nav.vault', icon: 'lock' },
         { id: 'places', key: 'nav.places', icon: 'mapPin' },
         { id: 'profile', key: 'nav.profile', icon: 'profile' }
       ];

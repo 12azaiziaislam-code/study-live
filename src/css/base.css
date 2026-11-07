@@ -670,11 +670,11 @@ p {
   }
 
   .desktop-nav-link.is-active {
-    color: var(--ink);
+    color: var(--accent);
     font-weight: 600;
     background: var(--surface);
-    box-shadow: var(--shadow-1);
-    border: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--border-strong);
+    border: 1px solid var(--border-strong);
   }
 
   .desktop-nav-link.is-active svg {

@@ -19,6 +19,7 @@
       'app.tagline': 'دفترك الجامعي الرقمي — مهامك وملاحظاتك وفصولك في مكان واحد',
 
       'nav.overview': 'الرئيسية',
+      'nav.home': 'الرئيسية',
       'nav.tasks': 'المهام',
       'nav.notes': 'الملاحظات',
       'nav.stats': 'الإحصائيات',
@@ -511,6 +512,7 @@
       'app.tagline': 'Ваш цифровой студенческий ежедневник — задачи, заметки и семестры',
 
       'nav.overview': 'Обзор',
+      'nav.home': 'Обзор',
       'nav.tasks': 'Задачи',
       'nav.notes': 'Заметки',
       'nav.stats': 'Статистика',
@@ -1001,6 +1003,7 @@
       'app.tagline': 'Your digital study planner — tasks, notes and semesters in one place',
 
       'nav.overview': 'Home',
+      'nav.home': 'Home',
       'nav.tasks': 'Tasks',
       'nav.notes': 'Notes',
       'nav.stats': 'Statistics',

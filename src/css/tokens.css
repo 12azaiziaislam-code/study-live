@@ -1,13 +1,13 @@
 /* ============================================================
    Study Live — Design Tokens
    Professional, high-contrast, modern UI.
-   Light = clean, crisp slate/ivory paper;
-   Dark = refined obsidian & deep graphite (modern, elegant).
+   Light = clean warm ivory paper & brushed bronze/gold;
+   Dark = luxury Obsidian Noir & Champagne Metallic Gold.
    Clean typography, balanced hierarchy, purposeful accent budget.
    ============================================================ */
 
 :root {
-  /* Neutrals — Light */
+  /* Neutrals — Light (Warm Ivory & Slate) */
   --bg: #f8fafc;
   --surface: #ffffff;
   --surface-2: #f1f5f9;
@@ -17,16 +17,16 @@
   --border: #e2e8f0;
   --border-strong: #cbd5e1;
 
-  /* Accent — Vibrant Royal Blue */
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
+  /* Accent — Brushed Bronze & Warm Amber Gold */
+  --accent: #b48316;
+  --accent-strong: #92670d;
   --on-accent: #ffffff;
-  --accent-soft: rgba(37, 99, 235, 0.08);
+  --accent-soft: rgba(180, 131, 22, 0.09);
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --gradient-primary: linear-gradient(135deg, #a16207 0%, #ca8a04 100%);
   --gradient-warm: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  --gradient-accent-soft: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(37, 99, 235, 0.12) 100%);
+  --gradient-accent-soft: linear-gradient(135deg, rgba(180, 131, 22, 0.06) 0%, rgba(180, 131, 22, 0.14) 100%);
 
   /* Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.82);
@@ -44,17 +44,17 @@
   --none-subject: #94a3b8;
 
   /* Academic accents */
-  --gold: #d97706;
-  --gold-soft: rgba(217, 119, 6, 0.1);
+  --gold: #b48316;
+  --gold-soft: rgba(180, 131, 22, 0.1);
 
   /* Highlights */
-  --hl: rgba(253, 224, 71, 0.35);
+  --hl: rgba(212, 175, 55, 0.2);
   --hl-mint: rgba(52, 211, 153, 0.25);
   --hl-rose: rgba(251, 113, 133, 0.25);
   --hl-sky: rgba(56, 189, 248, 0.25);
   --hl-backlog: var(--hl-rose);
   --hl-done: var(--hl-mint);
-  --ring: #cbd5e1;
+  --ring: #b48316;
   --notebook-grid: transparent;
   --notebook-margin: transparent;
 
@@ -62,8 +62,8 @@
   --shadow-1: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.04);
   --shadow-2: 0 4px 16px rgba(15, 23, 42, 0.08);
   --shadow-3: 0 12px 32px rgba(15, 23, 42, 0.12);
-  --shadow-glow: 0 2px 10px rgba(37, 99, 235, 0.2);
-  --shadow-card-hover: 0 6px 20px rgba(15, 23, 42, 0.09), 0 0 0 1px rgba(37, 99, 235, 0.15);
+  --shadow-glow: 0 2px 10px rgba(180, 131, 22, 0.2);
+  --shadow-card-hover: 0 6px 20px rgba(15, 23, 42, 0.09), 0 0 0 1px rgba(180, 131, 22, 0.18);
   --scrim: rgba(15, 23, 42, 0.45);
 
   /* Shape & rhythm */
@@ -93,28 +93,30 @@
 }
 
 [data-theme='dark'] {
-  /* Neutrals — Refined Dark Obsidian / Graphite */
-  --bg: #0c0e12;
-  --surface: #14171f;
-  --surface-2: #1b202c;
-  --surface-3: #232938;
-  --ink: #f1f5f9;
-  --ink-muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.15);
+  /* Neutrals — Refined Obsidian Noir & Deep Graphite */
+  --bg: #090a0d;
+  --surface: #111317;
+  --surface-2: #181a20;
+  --surface-3: #22252e;
+  --ink: #f4f4f6;
+  --ink-muted: #9da3af;
+  --border: rgba(212, 175, 55, 0.12);
+  --border-strong: rgba(212, 175, 55, 0.28);
 
-  --accent: #3b82f6;
-  --accent-strong: #60a5fa;
-  --on-accent: #ffffff;
-  --accent-soft: rgba(59, 130, 246, 0.14);
+  /* Accent — Executive Champagne & Liquid Gold */
+  --accent: #d4af37;
+  --accent-strong: #e6c35c;
+  --on-accent: #090a0d;
+  --accent-soft: rgba(212, 175, 55, 0.12);
 
-  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-  --gradient-warm: linear-gradient(135deg, #14171f 0%, #1b202c 100%);
-  --gradient-accent-soft: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.18) 100%);
+  --gradient-primary: linear-gradient(135deg, #c59b27 0%, #d4af37 45%, #f3c766 100%);
+  --gradient-warm: linear-gradient(135deg, #111317 0%, #181a20 100%);
+  --gradient-accent-soft: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.2) 100%);
 
-  --glass-bg: rgba(20, 23, 31, 0.78);
-  --glass-bg-strong: rgba(20, 23, 31, 0.92);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  /* Glassmorphism */
+  --glass-bg: rgba(17, 19, 23, 0.84);
+  --glass-bg-strong: rgba(13, 14, 18, 0.95);
+  --glass-border: rgba(212, 175, 55, 0.14);
 
   --danger: #f43f5e;
   --danger-soft: rgba(244, 63, 94, 0.14);
@@ -124,25 +126,25 @@
   --warn-soft: rgba(245, 158, 11, 0.14);
   --none-subject: #64748b;
 
-  --gold: #f59e0b;
-  --gold-soft: rgba(245, 158, 11, 0.14);
+  --gold: #d4af37;
+  --gold-soft: rgba(212, 175, 55, 0.16);
 
-  --hl: rgba(250, 204, 21, 0.18);
+  --hl: rgba(212, 175, 55, 0.15);
   --hl-mint: rgba(16, 185, 129, 0.18);
   --hl-rose: rgba(244, 63, 94, 0.18);
   --hl-sky: rgba(56, 189, 248, 0.18);
   --hl-backlog: var(--hl-rose);
   --hl-done: var(--hl-mint);
-  --ring: #334155;
+  --ring: #d4af37;
   --notebook-grid: transparent;
   --notebook-margin: transparent;
 
-  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-3: 0 12px 36px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 2px 10px rgba(59, 130, 246, 0.25);
-  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(59, 130, 246, 0.25);
-  --scrim: rgba(0, 0, 0, 0.7);
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-3: 0 12px 36px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 2px 14px rgba(212, 175, 55, 0.28);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(212, 175, 55, 0.25);
+  --scrim: rgba(0, 0, 0, 0.75);
 
   color-scheme: dark;
 }
