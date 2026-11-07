@@ -127,7 +127,7 @@
         : '') +
       '</div>' +
       '<h1 class="hero-title">' + u.esc(t(greetingKey())) + (studentSpecialty ? ' · ' + u.esc(studentSpecialty) : '') + '</h1>' +
-      '<p class="hero-motiv-msg"><span>' + u.esc(t(motivKey)) + '</span></p>' +
+      (tasksToday.length > 0 ? '<p class="hero-motiv-msg"><span>' + u.esc(t(motivKey)) + '</span></p>' : '') +
       '</div>' +
       progressRingHTML +
       '</div>' +

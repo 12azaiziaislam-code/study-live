@@ -272,14 +272,7 @@
 }
 
 .day-list {
-  /* ruled paper for the day's tasks */
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 23px,
-    color-mix(in srgb, var(--border) 40%, transparent) 23px,
-    color-mix(in srgb, var(--border) 40%, transparent) 24px
-  );
+  background-image: none;
 }
 
 /* calendar chevrons mirror in RTL */

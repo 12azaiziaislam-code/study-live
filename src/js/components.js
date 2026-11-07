@@ -610,9 +610,9 @@
     wrap.setAttribute('role', 'group');
     wrap.setAttribute('aria-label', t('t.difficulty'));
     [
-      ['hard', t('t.diffHard')],
-      ['easy', t('t.diffEasy')],
       ['light', t('t.diffLight')],
+      ['easy', t('t.diffEasy')],
+      ['hard', t('t.diffHard')],
     ].forEach(function (pair) {
       var b = document.createElement('button');
       b.type = 'button';
@@ -636,40 +636,35 @@
     return wrap;
   }
 
-  /* ---------- Subject chips selector ---------- */
+  /* ---------- Subject selector component ---------- */
 
   function subjectChips(selectedId) {
     var wrap = document.createElement('div');
-    wrap.className = 'chips-row';
+    wrap.className = 'subject-select-wrap';
     var subjects = SL.store.currentSemesterSubjects();
 
-    function chip(label, val, color) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'chip';
-      b.innerHTML = color ? '<span class="dot"></span>' : '';
-      var span = document.createElement('span');
-      span.textContent = label;
-      b.appendChild(span);
-      if (color) b.querySelector('.dot').style.background = color;
-      b.setAttribute('aria-pressed', selectedId === val ? 'true' : 'false');
-      b.addEventListener('click', function () {
-        selectedId = val;
-        u.$$('.chip', wrap).forEach(function (x) {
-          x.setAttribute('aria-pressed', 'false');
-        });
-        b.setAttribute('aria-pressed', 'true');
-      });
-      wrap.appendChild(b);
-    }
+    var sel = document.createElement('select');
+    sel.className = 'select subject-dropdown';
+    sel.id = 'form-subject-select';
 
-    chip(t('t.noSubject'), null, null);
+    var optNone = document.createElement('option');
+    optNone.value = '';
+    optNone.textContent = t('t.noSubject');
+    if (!selectedId) optNone.selected = true;
+    sel.appendChild(optNone);
+
     subjects.forEach(function (s) {
-      chip(s.name, s.id, s.color);
+      var opt = document.createElement('option');
+      opt.value = s.id;
+      opt.textContent = s.name;
+      if (selectedId === s.id) opt.selected = true;
+      sel.appendChild(opt);
     });
 
+    wrap.appendChild(sel);
+
     wrap.getSelected = function () {
-      return selectedId;
+      return sel.value || null;
     };
     wrap.isEmpty = function () {
       return !subjects.length;
@@ -686,38 +681,64 @@
     var editing = !!task;
 
     var body = document.createElement('div');
+    body.className = 'sheet-form task-sheet-form';
     body.innerHTML =
-      '<div class="field"><label for="tf-title">' + u.esc(t('t.taskTitle')) + '</label>' +
-      '<input class="input" id="tf-title" maxlength="140" value="' + u.esc(task ? task.title : '') +
-      '" placeholder="' + u.esc(t('t.taskTitlePh')) + '">' +
-      '<span class="field-error" role="alert" hidden></span></div>' +
-      '<div class="field"><label for="tf-desc">' + u.esc(t('t.desc')) + '</label>' +
-      '<textarea class="textarea compact" id="tf-desc" rows="3" placeholder="' + u.esc(t('t.descPh')) + '">' +
-      u.esc(task && task.description ? task.description : '') +
-      '</textarea></div>' +
       '<div class="field">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">' +
-      '<label for="tf-date" style="margin-bottom:0">' + u.esc(t('t.date')) + '</label>' +
-      '<div style="display:flex;align-items:center;gap:6px">' +
-      '<span style="font-size:13px;color:var(--ink-muted)">' + u.esc(t('t.openDate')) + '</span>' +
-      '<button type="button" id="tf-open-date" class="pin-toggle' + (!date ? ' on' : '') + '" aria-pressed="' + (!date ? 'true' : 'false') + '"><span class="pin-knob"></span></button>' +
-      '</div></div>' +
-      '<input class="input" id="tf-date" type="date" value="' + (date || u.todayStr()) + '" ' + (!date ? 'disabled style="opacity:0.5"' : '') + '></div>' +
-      '<div class="field"><label>' + u.esc(t('t.difficulty')) + '</label><div data-host="diff"></div></div>' +
-      '<div class="field"><label>' + u.esc(t('t.enableProgress')) + '</label>' +
+      '<label for="tf-title">' + u.esc(t('t.taskTitle')) + '</label>' +
+      '<input class="input" id="tf-title" maxlength="140" value="' + u.esc(task ? task.title : '') + '" placeholder="' + u.esc(t('t.taskTitlePh')) + '">' +
+      '<span class="field-error" role="alert" hidden></span>' +
+      '</div>' +
+
+      '<div class="field">' +
+      '<label for="tf-desc">' + u.esc(t('t.desc')) + '</label>' +
+      '<textarea class="textarea compact" id="tf-desc" rows="2" placeholder="' + u.esc(t('t.descPh')) + '">' +
+      u.esc(task && task.description ? task.description : '') +
+      '</textarea>' +
+      '</div>' +
+
+      '<div class="form-grid-2">' +
+      '<div class="field">' +
+      '<label for="form-subject-select">' + u.esc(t('t.subject')) + '</label>' +
+      '<div data-host="subj"></div>' +
+      '</div>' +
+
+      '<div class="field">' +
+      '<div class="field-label-row">' +
+      '<label for="tf-date">' + u.esc(t('t.date')) + '</label>' +
+      '<label class="toggle-label">' +
+      '<input type="checkbox" id="tf-open-date-chk"' + (!date ? ' checked' : '') + '> ' +
+      '<span>' + u.esc(t('t.openDate')) + '</span>' +
+      '</label>' +
+      '</div>' +
+      '<input class="input" id="tf-date" type="date" value="' + (date || u.todayStr()) + '"' + (!date ? ' disabled style="opacity:0.45"' : '') + '>' +
+      '</div>' +
+      '</div>' +
+
+      '<div class="form-grid-2">' +
+      '<div class="field">' +
+      '<label>' + u.esc(t('t.difficulty')) + '</label>' +
+      '<div data-host="diff"></div>' +
+      '</div>' +
+
+      '<div class="field">' +
+      '<div class="field-label-row">' +
+      '<label>' + u.esc(t('t.enableProgress')) + '</label>' +
       '<button type="button" id="tf-pen" class="pin-toggle' + (task && task.progressEnabled ? ' on' : '') + '" aria-pressed="' +
-      (task && task.progressEnabled ? 'true' : 'false') + '"><span class="pin-knob"></span></button></div>' +
-      '<div class="field" data-host="pprog"' + (task && task.progressEnabled ? '' : ' hidden') + '>' +
-      '<label>' + u.esc(t('t.progress')) + '</label>' +
-      '<div class="task-progress"><input type="range" min="0" max="100" step="1" value="' +
-      (task ? (task.progress || 0) : 0) + '" dir="ltr" data-pprog aria-label="' + u.esc(t('t.progress')) + '">' +
-      '<span class="tp-val num" data-pval>' + (task ? (task.progress || 0) : 0) + '%</span></div></div>' +
-      '<div class="field"><label>' + u.esc(t('t.subject')) + '</label><div data-host="subj"></div></div>';
+      (task && task.progressEnabled ? 'true' : 'false') + '"><span class="pin-knob"></span></button>' +
+      '</div>' +
+      '<div class="task-progress-box" data-host="pprog"' + (task && task.progressEnabled ? '' : ' hidden') + '>' +
+      '<div class="task-progress">' +
+      '<input type="range" min="0" max="100" step="1" value="' + (task ? (task.progress || 0) : 0) + '" dir="ltr" data-pprog aria-label="' + u.esc(t('t.progress')) + '">' +
+      '<span class="tp-val num" data-pval>' + (task ? (task.progress || 0) : 0) + '%</span>' +
+      '</div>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
 
     var diff = segmentedDiff(task ? task.difficulty : 'light');
     body.querySelector('[data-host="diff"]').appendChild(diff);
 
-    /* progress toggle + colored slider (red → blue → green) */
+    /* progress toggle + colored slider */
     var penToggle = body.querySelector('#tf-pen');
     var pprogHost = body.querySelector('[data-host="pprog"]');
     var pprogInput = pprogHost.querySelector('[data-pprog]');
@@ -745,15 +766,14 @@
     });
     pprogInput.addEventListener('input', paintProgress);
     if (penOn) paintProgress();
-    var openDateToggle = body.querySelector('#tf-open-date');
+
+    var openDateChk = body.querySelector('#tf-open-date-chk');
     var dateInput = body.querySelector('#tf-date');
     var openDateOn = !date;
-    openDateToggle.addEventListener('click', function () {
-      openDateOn = !openDateOn;
-      openDateToggle.classList.toggle('on', openDateOn);
-      openDateToggle.setAttribute('aria-pressed', openDateOn ? 'true' : 'false');
+    openDateChk.addEventListener('change', function () {
+      openDateOn = openDateChk.checked;
       dateInput.disabled = openDateOn;
-      dateInput.style.opacity = openDateOn ? '0.5' : '1';
+      dateInput.style.opacity = openDateOn ? '0.45' : '1';
     });
 
     var subj = subjectChips(task ? task.subjectId : null);
