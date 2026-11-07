@@ -69,31 +69,15 @@
       });
     }
 
-    // Desktop header navigation
+    // Desktop header navigation — instantaneous active state update
     var dNav = document.querySelector('[data-host="desktopnav"]');
     if (dNav) {
-      var dPages = [
-        { id: 'overview', key: 'nav.overview', icon: 'home' },
-        { id: 'tasks', key: 'nav.tasks', icon: 'tasks' },
-        { id: 'notes', key: 'nav.notes', icon: 'notes' },
-        { id: 'stats', key: 'nav.stats', icon: 'chart' },
-        { id: 'vault', key: 'nav.vault', icon: 'lock' },
-        { id: 'places', key: 'nav.places', icon: 'mapPin' },
-        { id: 'profile', key: 'nav.profile', icon: 'profile' }
-      ];
-      dNav.innerHTML = dPages.map(function(dp) {
-        var isCur = dp.id === currentId;
-        var label = SL.i18n.t(dp.key) || dp.id;
-        return '<button type="button" class="desktop-nav-link' + (isCur ? ' is-active' : '') + '" data-dpage="' + dp.id + '">' +
-               SL.ui.icon(dp.icon, 16) +
-               '<span>' + SL.utils.esc(label) + '</span>' +
-               '</button>';
-      }).join('');
-      dNav.querySelectorAll('[data-dpage]').forEach(function(b) {
-        b.addEventListener('click', function() {
-          go(b.getAttribute('data-dpage'));
+      var links = dNav.querySelectorAll('[data-dpage]');
+      if (links.length) {
+        links.forEach(function(b) {
+          b.classList.toggle('is-active', b.getAttribute('data-dpage') === currentId);
         });
-      });
+      }
     }
   }
 

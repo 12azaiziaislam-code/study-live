@@ -26,8 +26,32 @@
 
   /* ---------- header ---------- */
 
+  var DESKTOP_PAGES = [
+    { id: 'overview', key: 'nav.overview', icon: 'home' },
+    { id: 'tasks', key: 'nav.tasks', icon: 'tasks' },
+    { id: 'notes', key: 'nav.notes', icon: 'notes' },
+    { id: 'stats', key: 'nav.stats', icon: 'chart' },
+    { id: 'vault', key: 'nav.vault', icon: 'lock' },
+    { id: 'places', key: 'nav.places', icon: 'mapPin' },
+    { id: 'profile', key: 'nav.profile', icon: 'profile' }
+  ];
+
+  function renderDesktopNavLinks(activePageId) {
+    return DESKTOP_PAGES.map(function (dp) {
+      var isCur = dp.id === activePageId;
+      var label = SL.i18n.t(dp.key) || dp.id;
+      return (
+        '<button type="button" class="desktop-nav-link' + (isCur ? ' is-active' : '') + '" data-dpage="' + dp.id + '">' +
+        SL.ui.icon(dp.icon, 16) +
+        '<span>' + u.esc(label) + '</span>' +
+        '</button>'
+      );
+    }).join('');
+  }
+
   function buildHeader() {
     var header = u.$('.header');
+    var curPage = (SL.router && SL.router.current && SL.router.current()) || 'overview';
     header.innerHTML =
       '<span class="brand">' +
       '<span class="brand-crest">' + SL.ui.icon('logo', 20) + '</span>' +
@@ -35,7 +59,9 @@
       '<span class="name">Study Live</span>' +
       '<span class="brand-tag" data-host="brandtag">' + (SL.i18n.lang === 'ar' ? 'منصة الطالب' : SL.i18n.lang === 'ru' ? 'Студент' : 'Student') + '</span>' +
       '</span></span>' +
-      '<nav class="desktop-nav" aria-label="Desktop Navigation" data-host="desktopnav"></nav>' +
+      '<nav class="desktop-nav" aria-label="Desktop Navigation" data-host="desktopnav">' +
+      renderDesktopNavLinks(curPage) +
+      '</nav>' +
       '<div class="header-actions">' +
       '<button class="icon-btn pill-btn" data-act="lang" aria-haspopup="menu">' +
       SL.ui.icon('globe', 17) +
@@ -43,6 +69,16 @@
       '<button class="icon-btn pill-btn" data-act="theme" aria-label="' + SL.i18n.t('hdr.theme') + '" data-host="themebtn"></button>' +
       '<div class="lang-menu" role="menu" data-host="langmenu"></div>' +
       '</div>';
+
+    var dNav = header.querySelector('[data-host="desktopnav"]');
+    if (dNav) {
+      dNav.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-dpage]');
+        if (btn && SL.router && SL.router.go) {
+          SL.router.go(btn.getAttribute('data-dpage'));
+        }
+      });
+    }
 
     var menu = header.querySelector('[data-host="langmenu"]');
     var themeBtn = header.querySelector('[data-host="themebtn"]');
@@ -56,6 +92,10 @@
       themeBtn.innerHTML = SL.ui.icon(SL.store.get().settings.theme === 'dark' ? 'sun' : 'moon', 17);
       if (brandTag) {
         brandTag.textContent = SL.i18n.lang === 'ar' ? 'منصة الطالب' : SL.i18n.lang === 'ru' ? 'Студент' : 'Student';
+      }
+      if (dNav) {
+        var cur = (SL.router && SL.router.current && SL.router.current()) || 'overview';
+        dNav.innerHTML = renderDesktopNavLinks(cur);
       }
     }
 

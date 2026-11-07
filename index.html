@@ -35,7 +35,57 @@
   </head>
   <body>
     <div class="app">
-      <header class="header"></header>
+      <header class="header">
+        <span class="brand">
+          <span class="brand-crest">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="3" width="15" height="18" rx="3"/><path d="M8.5 3v18"/><path d="M13.5 3v5.5l1.8-1.4 1.8 1.4V3"/></svg>
+          </span>
+          <span class="brand-titles">
+            <span class="name">Study Live</span>
+            <span class="brand-tag" data-host="brandtag">منصة الطالب</span>
+          </span>
+        </span>
+        <nav class="desktop-nav" aria-label="Desktop Navigation" data-host="desktopnav">
+          <button type="button" class="desktop-nav-link is-active" data-dpage="overview">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20z"/><path d="M9 21.5V12h6v9.5"/></svg>
+            <span>الرئيسية</span>
+          </button>
+          <button type="button" class="desktop-nav-link" data-dpage="tasks">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="16" rx="3"/><path d="M3.5 9.5h17"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M9 14.8l2 2 3.8-3.8"/></svg>
+            <span>المهام</span>
+          </button>
+          <button type="button" class="desktop-nav-link" data-dpage="notes">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8.5L14.5 19H7a2 2 0 0 1-2-2z"/><path d="M19 13.5h-4.5V19"/><path d="M8.5 9h7"/><path d="M8.5 12.5h4"/></svg>
+            <span>الملاحظات</span>
+          </button>
+          <button type="button" class="desktop-nav-link" data-dpage="stats">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10"/><path d="M9 20V6"/><path d="M14 20V12"/><path d="M19 20V4"/></svg>
+            <span>الإحصائيات</span>
+          </button>
+          <button type="button" class="desktop-nav-link" data-dpage="vault">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+            <span>الحسابات</span>
+          </button>
+          <button type="button" class="desktop-nav-link" data-dpage="places">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>المواقع</span>
+          </button>
+          <button type="button" class="desktop-nav-link" data-dpage="profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c1.2-3.4 3.9-5 7-5s5.8 1.6 7 5"/></svg>
+            <span>ملفي</span>
+          </button>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-btn pill-btn" data-act="lang" aria-haspopup="menu">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.5 2.3 3.8 5 3.8 8.5s-1.3 6.2-3.8 8.5c-2.5-2.3-3.8-5-3.8-8.5s1.3-6.2 3.8-8.5z"/></svg>
+            <span class="icon-label" data-host="langname">AR</span>
+          </button>
+          <button class="icon-btn pill-btn" data-act="theme" aria-label="Theme" data-host="themebtn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13.5A8 8 0 0 1 10.5 4 7.2 7.2 0 1 0 20 13.5z"/></svg>
+          </button>
+          <div class="lang-menu" role="menu" data-host="langmenu"></div>
+        </div>
+      </header>
       <main class="main"></main>
       <button class="fab" hidden aria-label=""></button>
       <nav class="bottom-nav" aria-label="Study Live"></nav>

@@ -34,6 +34,8 @@
   var ICONS = {
     logo:
       '<rect x="4.5" y="3" width="15" height="18" rx="3"/><path d="M8.5 3v18"/><path d="M13.5 3v5.5l1.8-1.4 1.8 1.4V3"/>',
+    home:
+      '<path d="M3 9.5L12 3l9 6.5V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20z"/><path d="M9 21.5V12h6v9.5"/>',
     tasks:
       '<rect x="3.5" y="5" width="17" height="16" rx="3"/><path d="M3.5 9.5h17"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M9 14.8l2 2 3.8-3.8"/>',
     notes:
