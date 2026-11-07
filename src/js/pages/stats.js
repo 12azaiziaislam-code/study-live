@@ -191,7 +191,7 @@
     if (agg.overdueCount > 0) {
       tips.push({
         type: 'alert',
-        icon: '⚠️',
+        icon: icon('alert', 16),
         text: t('sh.recOverdue', { n: agg.overdueCount }),
       });
     }
@@ -199,7 +199,7 @@
     if (agg.hardestSubject) {
       tips.push({
         type: 'challenge',
-        icon: '🎯',
+        icon: icon('trophy', 16),
         text: t('sh.recChallenge', {
           subject: agg.hardestSubject.subject.name,
           val: agg.hardestSubject.val,
@@ -210,7 +210,7 @@
     if (agg.openDateCount > 0) {
       tips.push({
         type: 'info',
-        icon: '📅',
+        icon: icon('clock', 16),
         text: t('sh.recOpenDate', { n: agg.openDateCount }),
       });
     }
@@ -218,7 +218,7 @@
     if (agg.streak === 0 && agg.notDone > 0) {
       tips.push({
         type: 'boost',
-        icon: '⚡',
+        icon: icon('fire', 16),
         text: t('sh.recStreak'),
       });
     }
@@ -226,7 +226,7 @@
     if (agg.total > 0 && agg.notDone === 0) {
       tips.push({
         type: 'celebrate',
-        icon: '🌟',
+        icon: icon('check', 16),
         text: t('sh.recAllDone'),
       });
     }

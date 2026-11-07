@@ -123,11 +123,11 @@
       '<div class="hero-badge-row">' +
       '<span class="hero-date-badge">' + icon('calendar', 14) + '<span>' + u.esc(u.fmtDateLong(today, SL.i18n.lang)) + '</span></span>' +
       (streak > 0
-        ? '<span class="hero-streak-badge">🔥 <b class="num">' + streak + '</b> ' + u.esc(t('str.label')) + '</span>'
+        ? '<span class="hero-streak-badge">' + icon('fire', 13) + ' <b class="num">' + streak + '</b> ' + u.esc(t('str.label')) + '</span>'
         : '') +
       '</div>' +
-      '<h1 class="hero-title">' + u.esc(t(greetingKey())) + (studentSpecialty ? ' · ' + u.esc(studentSpecialty) : '') + ' 👋</h1>' +
-      '<p class="hero-motiv-msg">' + icon('star', 15) + '<span>' + u.esc(t(motivKey)) + '</span></p>' +
+      '<h1 class="hero-title">' + u.esc(t(greetingKey())) + (studentSpecialty ? ' · ' + u.esc(studentSpecialty) : '') + '</h1>' +
+      '<p class="hero-motiv-msg"><span>' + u.esc(t(motivKey)) + '</span></p>' +
       '</div>' +
       progressRingHTML +
       '</div>' +
@@ -179,7 +179,7 @@
     } else {
       html +=
         '<div class="card card-pad home-empty-today">' +
-        '<span class="empty-star-pill">✨</span>' +
+        '<span class="empty-star-pill">' + icon('check', 18) + '</span>' +
         '<div class="empty-today-text">' +
         '<div class="empty-today-title">' + u.esc(t('ov.noTasksToday')) + '</div>' +
         '</div>' +

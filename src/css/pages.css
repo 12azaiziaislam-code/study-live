@@ -77,22 +77,12 @@
   z-index: 0;
 }
 
-/* highlighter stroke behind page titles — school desk motif */
-.page-title::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset-inline: -6px;
-  bottom: 2px;
-  height: 0.52em;
-  background: var(--hl);
-  border-radius: 3px;
-  transform: rotate(-0.6deg);
-  transition: background-color var(--t-med) ease;
-}
-
-[dir='rtl'] .page-title::after {
-  transform: rotate(0.6deg);
+.page-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 4px;
 }
 
 .day-greeting {
@@ -192,9 +182,13 @@
 
 /* overdue task card tone */
 .task-card.is-late {
-  border-color: color-mix(in srgb, var(--danger) 40%, transparent);
-  background: linear-gradient(135deg, color-mix(in srgb, var(--danger) 5%, var(--surface)), color-mix(in srgb, var(--danger) 2%, var(--surface)));
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--danger) 6%, transparent);
+  border-color: color-mix(in srgb, var(--danger) 28%, var(--border));
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+}
+
+.task-card.is-late:hover {
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
 }
 
 .chip-date {
@@ -230,9 +224,9 @@
 }
 
 [data-theme='dark'] .cal-card {
-  background: color-mix(in srgb, var(--surface) 95%, #262219);
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow-1);
 }
 
 .cal-tape {
@@ -3720,21 +3714,19 @@ img.contact-avatar {
 
 /* 1. Hero Card */
 .home-hero-card {
-  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.08), transparent 55%),
-              radial-gradient(circle at bottom left, rgba(234, 179, 8, 0.06), transparent 50%),
-              var(--surface);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-l);
   padding: 22px 24px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-1);
   position: relative;
   overflow: hidden;
   transition: border-color var(--t-med) ease, box-shadow var(--t-med) ease;
 }
 
 .home-hero-card:hover {
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
-  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-2);
 }
 
 .hero-top-row {
@@ -3763,7 +3755,7 @@ img.contact-avatar {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 10px;
+  padding: 3px 9px;
   border-radius: 999px;
   background: var(--surface-2);
   border: 1px solid var(--border);
@@ -3775,21 +3767,21 @@ img.contact-avatar {
 .hero-streak-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
+  gap: 5px;
+  padding: 3px 9px;
   border-radius: 999px;
-  background: rgba(249, 115, 22, 0.12);
-  border: 1px solid rgba(249, 115, 22, 0.3);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.25);
   font-size: 11.5px;
-  color: #f97316;
+  color: var(--warn);
   font-weight: 600;
 }
 
 .hero-title {
-  font-size: 26px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 700;
   color: var(--ink);
-  margin: 0 0 6px 0;
+  margin: 0 0 4px 0;
   letter-spacing: -0.02em;
   line-height: 1.25;
 }
@@ -3798,8 +3790,8 @@ img.contact-avatar {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
-  color: var(--accent);
+  font-size: 13.5px;
+  color: var(--ink-muted);
   margin: 0;
   font-weight: 500;
 }
@@ -3909,13 +3901,13 @@ img.contact-avatar {
 .home-kpi-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 14px 16px;
+  border-radius: var(--radius);
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-1);
   cursor: pointer;
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
   width: 100%;
@@ -3929,7 +3921,7 @@ img.contact-avatar {
 .home-kpi-card:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-2);
 }
 
 .kpi-card-top {
@@ -3937,12 +3929,12 @@ img.contact-avatar {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .kpi-icon-pill {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 9px;
   display: inline-flex;
   align-items: center;
@@ -3951,18 +3943,18 @@ img.contact-avatar {
 }
 
 .kpi-icon-pill.pill-blue {
-  background: rgba(56, 189, 248, 0.14);
-  color: #38bdf8;
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--accent);
 }
 
 .kpi-icon-pill.pill-green {
-  background: rgba(34, 197, 94, 0.14);
-  color: #22c55e;
+  background: var(--success-soft);
+  color: var(--success);
 }
 
 .kpi-icon-pill.pill-rose {
-  background: rgba(239, 68, 68, 0.14);
-  color: #ef4444;
+  background: var(--danger-soft);
+  color: var(--danger);
 }
 
 .kpi-icon-pill.pill-gray {
@@ -3971,23 +3963,23 @@ img.contact-avatar {
 }
 
 .kpi-icon-pill.pill-purple {
-  background: rgba(168, 85, 247, 0.14);
-  color: #c084fc;
+  background: rgba(168, 85, 247, 0.12);
+  color: #a855f7;
 }
 
 .kpi-arrow {
   color: var(--ink-muted);
-  opacity: 0.45;
+  opacity: 0.35;
   transition: transform 140ms ease, opacity 140ms ease;
 }
 
 .home-kpi-card:hover .kpi-arrow {
-  opacity: 1;
-  transform: translateX(2px);
+  opacity: 0.9;
+  transform: translateX(3px);
 }
 
 [dir='rtl'] .home-kpi-card:hover .kpi-arrow {
-  transform: translateX(-2px);
+  transform: translateX(-3px);
 }
 
 .kpi-num {
@@ -3996,12 +3988,13 @@ img.contact-avatar {
   color: var(--ink);
   line-height: 1;
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
   margin-bottom: 4px;
 }
 
 .kpi-lbl {
-  font-size: 11.5px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   color: var(--ink-muted);
 }
 
@@ -4147,21 +4140,21 @@ img.contact-avatar {
   gap: 8px;
   margin-top: 14px;
   padding-top: 12px;
-  border-top: 1px dashed var(--border);
+  border-top: 1px solid var(--border);
 }
 
 .home-sub-chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 11px;
-  border-radius: 999px;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
   background: var(--surface-2);
   border: 1px solid var(--border);
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 500;
   color: var(--ink);
-  transition: border-color 140ms ease, background 140ms ease;
+  transition: all 140ms ease;
 }
 
 .home-sub-chip i {
@@ -4174,6 +4167,7 @@ img.contact-avatar {
 .home-sub-chip:hover {
   border-color: var(--accent);
   background: var(--surface);
+  transform: translateY(-1px);
 }
 
 /* 5. Upcoming Week Section */
@@ -4182,15 +4176,15 @@ img.contact-avatar {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 26px 20px;
+  padding: 24px 20px;
   gap: 10px;
 }
 
 .week-empty-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: rgba(99, 102, 241, 0.1);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--accent-soft);
   color: var(--accent);
   display: flex;
   align-items: center;

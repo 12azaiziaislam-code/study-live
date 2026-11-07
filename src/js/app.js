@@ -33,7 +33,7 @@
       '<span class="brand-crest">' + SL.ui.icon('logo', 20) + '</span>' +
       '<span class="brand-titles">' +
       '<span class="name">Study Live</span>' +
-      '<span class="brand-tag" data-host="brandtag">🎓 ' + (SL.i18n.lang === 'ar' ? 'منصة الطالب' : SL.i18n.lang === 'ru' ? 'Студент' : 'Student') + '</span>' +
+      '<span class="brand-tag" data-host="brandtag">' + (SL.i18n.lang === 'ar' ? 'منصة الطالب' : SL.i18n.lang === 'ru' ? 'Студент' : 'Student') + '</span>' +
       '</span></span>' +
       '<button class="icon-btn pill-btn" data-act="lang" aria-haspopup="menu">' +
       SL.ui.icon('globe', 17) +
@@ -52,7 +52,7 @@
       header.querySelector('[data-host="langname"]').textContent = lang ? lang.code.toUpperCase() : '';
       themeBtn.innerHTML = SL.ui.icon(SL.store.get().settings.theme === 'dark' ? 'sun' : 'moon', 17);
       if (brandTag) {
-        brandTag.textContent = '🎓 ' + (SL.i18n.lang === 'ar' ? 'منصة الطالب' : SL.i18n.lang === 'ru' ? 'Студент' : 'Student');
+        brandTag.textContent = SL.i18n.lang === 'ar' ? 'منصة الطالب' : SL.i18n.lang === 'ru' ? 'Студент' : 'Student';
       }
     }
 

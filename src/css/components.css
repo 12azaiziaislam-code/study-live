@@ -75,24 +75,6 @@
   transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast) ease, border-color var(--t-fast) ease;
 }
 
-/* Scholastic student notebook edge detail */
-.card::before {
-  content: '';
-  position: absolute;
-  top: 12px;
-  bottom: 12px;
-  inset-inline-start: 0;
-  width: 3.5px;
-  border-radius: 0 2px 2px 0;
-  background: color-mix(in srgb, var(--accent) 30%, transparent);
-  pointer-events: none;
-  transition: background-color var(--t-fast) ease;
-}
-
-[dir='rtl'] .card::before {
-  border-radius: 2px 0 0 2px;
-}
-
 .card-pad {
   padding: 18px 18px;
 }
@@ -615,9 +597,11 @@ input[type='date'] {
 }
 
 .cal-day.selected {
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--accent);
+  color: var(--on-accent);
   font-weight: 600;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
 .cal-day.selected::before {
@@ -665,15 +649,15 @@ input[type='date'] {
   opacity: 0.35;
 }
 
-/* on the ink-filled selected day, invert dots so they stay visible */
+/* on the selected day, tint dots with on-accent so they stay clearly visible */
 .cal-day.selected .cal-dots i {
-  background: var(--bg);
-  opacity: 0.85;
+  background: var(--on-accent);
+  opacity: 0.9;
   box-shadow: none;
 }
 
 .cal-day.selected .cal-dots i.done {
-  opacity: 0.4;
+  opacity: 0.45;
 }
 
 .cal-dots .more {
@@ -690,7 +674,7 @@ input[type='date'] {
 }
 
 .cal-day.selected .cal-dots .more {
-  color: var(--bg);
+  color: var(--on-accent);
 }
 
 @keyframes dot-pop {
@@ -711,9 +695,9 @@ input[type='date'] {
 }
 
 [data-theme='dark'] .task-card {
-  background: color-mix(in srgb, var(--surface) 92%, #262219);
-  border-color: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow-1);
 }
 
 @media (hover: hover) {
@@ -810,12 +794,14 @@ input[type='date'] {
 }
 
 .task-row .t-title {
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--ink);
   overflow-wrap: anywhere;
   line-height: 1.35;
+  text-align: start;
+  unicode-bidi: plaintext;
   transition: color var(--t-fast) ease;
 }
 
@@ -824,6 +810,8 @@ input[type='date'] {
   color: var(--ink-muted);
   margin-top: 4px;
   line-height: 1.5;
+  text-align: start;
+  unicode-bidi: plaintext;
   overflow-wrap: anywhere;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -879,7 +867,7 @@ input[type='date'] {
 }
 
 [data-theme='dark'] .t-link-btn {
-  background: color-mix(in srgb, var(--accent) 15%, #221e18);
+  background: color-mix(in srgb, var(--accent) 15%, var(--surface-2));
   border-color: color-mix(in srgb, var(--accent) 38%, transparent);
   color: var(--accent-strong);
 }
@@ -903,7 +891,7 @@ input[type='date'] {
 }
 
 [data-theme='dark'] .t-link-btn.is-youtube {
-  background: color-mix(in srgb, #e5484d 15%, #221e18);
+  background: color-mix(in srgb, #e5484d 15%, var(--surface-2));
   border-color: color-mix(in srgb, #e5484d 35%, transparent);
   color: #ff787d;
 }
@@ -950,7 +938,7 @@ input[type='date'] {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 8px;
   padding: 2px 0;
 }
 
@@ -959,7 +947,7 @@ input[type='date'] {
   min-width: 0;
   -webkit-appearance: none;
   appearance: none;
-  height: 6px;
+  height: 5px;
   border-radius: 999px;
   background: var(--surface-2);
   cursor: pointer;
@@ -968,25 +956,24 @@ input[type='date'] {
 }
 
 .task-progress input[type='range']:hover {
-  height: 8px;
+  height: 7px;
 }
 
 .task-progress input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: #ffffff;
-  border: 2.5px solid var(--accent);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  background: var(--accent);
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   cursor: grab;
-  transition: transform var(--t-fast) var(--ease-spring), box-shadow var(--t-fast) ease;
+  transition: transform var(--t-fast) var(--ease-spring);
 }
 
 .task-progress input[type='range']::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35), 0 0 0 3px var(--accent-soft);
+  transform: scale(1.25);
 }
 
 .task-progress input[type='range']::-webkit-slider-thumb:active {
@@ -995,14 +982,13 @@ input[type='date'] {
 }
 
 .task-progress input[type='range']::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: #ffffff;
-  border: 2.5px solid var(--accent);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  background: var(--accent);
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   cursor: grab;
-  transition: transform var(--t-fast) var(--ease-spring);
 }
 
 .task-progress input[type='range']::-moz-range-track {
@@ -1010,14 +996,14 @@ input[type='date'] {
 }
 
 .task-progress .tp-val {
-  min-width: 40px;
-  padding: 2px 8px;
+  min-width: 38px;
+  padding: 1.5px 7px;
   text-align: center;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--accent);
   background: var(--accent-soft);
-  border-radius: 999px;
+  border-radius: 6px;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
