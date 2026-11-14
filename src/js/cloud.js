@@ -253,13 +253,18 @@
         });
       });
       // Adopt the cloud academic structure when this device has none yet
+      // (or when the cloud copy carries a newer _rev, i.e. it was edited server-side)
+      var localHasYears = st.academic && st.academic.years && st.academic.years.length;
       if (cloudAcademic && Array.isArray(cloudAcademic.years) && cloudAcademic.years.length &&
-          !(st.academic && st.academic.years && st.academic.years.length)) {
+          (!localHasYears || (cloudAcademic._rev || 0) > ((st.academic && st.academic._rev) || 0))) {
         st.academic = cloudAcademic;
         changed = true;
       }
-      // Fill empty local profile fields from the cloud copy
-      if (cloudProfile && st.profile) {
+      if (cloudProfile && st.profile && (cloudProfile._rev || 0) > (st.profile._rev || 0)) {
+        Object.keys(cloudProfile).forEach(function (k) { if (k !== 'email') st.profile[k] = cloudProfile[k]; });
+        changed = true;
+      } else if (cloudProfile && st.profile) {
+        // Fill empty local profile fields from the cloud copy
         Object.keys(cloudProfile).forEach(function (k) {
           if (k !== 'email' && cloudProfile[k] && !st.profile[k]) { st.profile[k] = cloudProfile[k]; changed = true; }
         });
