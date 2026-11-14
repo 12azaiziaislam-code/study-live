@@ -37,6 +37,7 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
   var url = new URL(event.request.url);
   if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;
+  if (url.pathname.indexOf('/api/') === 0) return; // never cache API / auth
 
   // network-first: try the live response, fall back to cache offline
   event.respondWith(

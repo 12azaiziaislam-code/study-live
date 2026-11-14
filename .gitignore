@@ -7,3 +7,4 @@ dist/
 *.lnk
 .vscode/
 .DS_Store
+.wrangler/

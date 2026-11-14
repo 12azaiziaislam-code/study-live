@@ -1,0 +1,8 @@
+name = "study-live"
+pages_build_output_dir = "./dist"
+compatibility_date = "2025-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "study-live-db"
+database_id = "adae0a5a-9990-4cf3-b03c-1c400e45cf47"

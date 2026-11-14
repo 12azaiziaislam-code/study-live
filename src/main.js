@@ -10,7 +10,7 @@ import './js/db.js';
 import './js/store.js';
 import './js/i18n.js';
 import './js/components.js';
-import './js/supabase.js';
+import './js/cloud.js';
 import './js/calendar.js';
 import './js/pages/overview.js';
 import './js/pages/tasks.js';
