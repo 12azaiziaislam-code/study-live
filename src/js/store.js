@@ -238,6 +238,7 @@
     },
 
     saveNow: saveNow,
+    emit: emit,
 
     /* ---------- one-time image migration (localStorage -> IDB) ---------- */
     migrateImages: function () {

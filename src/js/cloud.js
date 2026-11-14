@@ -228,19 +228,44 @@
 
   function syncFromCloud() {
     if (!currentUser) return Promise.resolve({ skipped: true });
-    return Promise.all(LIST_TABLES.map(function (t) {
-      return pullTable(t).then(function (rows) { return { table: t, rows: rows }; });
-    })).then(function (results) {
+    var getDoc = function (key) {
+      return api('data/' + key).then(function (r) { return r.data; }).catch(function () { return null; });
+    };
+    return Promise.all([
+      Promise.all(LIST_TABLES.map(function (t) {
+        return pullTable(t).then(function (rows) { return { table: t, rows: rows }; });
+      })),
+      getDoc('academic_structures'),
+      getDoc('profiles'),
+    ]).then(function (all) {
+      var results = all[0];
+      var cloudAcademic = all[1];
+      var cloudProfile = all[2];
       var st = SL.store.get();
+      var changed = false;
       results.forEach(function (r) {
         var local = st[r.table];
         if (!r.rows.length || !Array.isArray(local)) return;
         r.rows.forEach(function (crow) {
           var idx = local.findIndex(function (l) { return l.id === crow.id; });
           if (idx >= 0) local[idx] = crow; else local.push(crow);
+          changed = true;
         });
       });
+      // Adopt the cloud academic structure when this device has none yet
+      if (cloudAcademic && Array.isArray(cloudAcademic.years) && cloudAcademic.years.length &&
+          !(st.academic && st.academic.years && st.academic.years.length)) {
+        st.academic = cloudAcademic;
+        changed = true;
+      }
+      // Fill empty local profile fields from the cloud copy
+      if (cloudProfile && st.profile) {
+        Object.keys(cloudProfile).forEach(function (k) {
+          if (k !== 'email' && cloudProfile[k] && !st.profile[k]) { st.profile[k] = cloudProfile[k]; changed = true; }
+        });
+      }
       SL.store.saveNow();
+      if (changed && SL.store.emit) SL.store.emit();
       return { ok: true, tables: results.map(function (r) { return r.table + ':' + r.rows.length; }) };
     });
   }
