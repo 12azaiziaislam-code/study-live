@@ -545,7 +545,7 @@
           }
           SL.ui.openSubjectManager(cur.sem.id);
         } else if (act === 'add-task-head') {
-          openForm(null, view.selected, root2);
+          SL.ui.openTaskForm({ date: view.selected });
         }
       });
     });
