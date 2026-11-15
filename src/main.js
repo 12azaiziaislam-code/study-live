@@ -22,4 +22,5 @@ import './js/pages/teachers.js';
 import './js/pages/contacts.js';
 import './js/pages/profile.js';
 import './js/router.js';
+import './js/select.js';
 import './js/app.js';
